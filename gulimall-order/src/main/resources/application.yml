@@ -4,6 +4,16 @@ spring:
     password: root
     url: jdbc:mysql://192.168.56.10:3306/gulimall_oms
     driver-class-name: com.mysql.jdbc.Driver
+  # 配置注册中心nacos的地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  # 给每个服务起自己的名字，将在注册中心显示
+  application:
+    name: gulimall_order
+
+
 
 # sql映射文件
 mybatis-plus:

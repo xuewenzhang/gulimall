@@ -1,11 +1,10 @@
-package com.bupt.gulimall.coupon;
-
+package com.bupt.gulimall.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GulimallCouponApplicationTests {
+class GulimallGatewayApplicationTests {
 
 	@Test
 	void contextLoads() {
