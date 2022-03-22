@@ -15,3 +15,38 @@ spring:
           uri: https://www.qq.com/
           predicates:
             - Query=url,qq
+
+
+# https://blog.csdn.net/qulinchao/article/details/122190723  uri的三种配置方式
+
+
+#         精确路由放到高优先级
+        - id: product_route
+          uri: http://localhost:10000/gulimall-product
+          predicates:
+        #   断言规则:api/product下的所有请求
+            - Path=/api/product/**
+          filters:
+        #   将所有api下的请求重写为：去掉api前缀
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+
+
+
+
+# 查找所有一级菜单二级菜单的请求
+# 前端项目发过来的请求全部发到网关上，网关暂时将请求全部发到renrenfast服务上
+        - id: admin_route
+          uri: http://localhost:8080/renren-fast
+          predicates:
+#          /**表示发起的任意请求都路由到uri
+            - Path=/api/**
+# 前端发送请求http://localhost:88/api/captcha.jpg，网关会将其转发到renrenfast，即在注册中心找到renrenfast的ip及port
+# 将上速链接转为http://ip:port/api/captcha.jpg 而默认验证码请求为localhost:8080/renren-fast/captcha.jpg
+# 故使用网关的功能： 路径重写
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+# 但由网关的88端口到renrenfast的8080端口受到了跨域限制
+
+
+

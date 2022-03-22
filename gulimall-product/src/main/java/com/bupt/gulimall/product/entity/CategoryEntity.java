@@ -1,10 +1,13 @@
 package com.bupt.gulimall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -39,6 +42,8 @@ public class CategoryEntity implements Serializable {
 	/**
 	 * 是否显示[0-不显示，1显示]
 	 */
+	// 该注解代表这是一个逻辑删除字段,并括号内配置逻辑删除规则
+	@TableLogic(value = "1", delval = "0")
 	private Integer showStatus;
 	/**
 	 * 排序
@@ -56,5 +61,9 @@ public class CategoryEntity implements Serializable {
 	 * 商品数量
 	 */
 	private Integer productCount;
+
+	// 该属性记录所有的子分类,TableField表示该属性在表中不存在
+	@TableField(exist = false)
+	private List<CategoryEntity> children;
 
 }
