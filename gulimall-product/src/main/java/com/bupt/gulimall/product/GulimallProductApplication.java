@@ -27,6 +27,27 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  		3） 给Bean加上逻辑删除注解：@TableLogic
 
 
+ 	3 JSR303后端校验： 前端表单校验数据合法性后，后端也要进行校验
+ 		1） 给Bean添加校验注解:javax.validation.constraints，并定义自己的message提示
+ 		2)  开启校验功能@Valid
+ 		3） 给校验的bean后跟一个BindingResult，就可以获取到校验结果
+		4） 分组校验（可完成多场景地复杂校验）
+ 			1) @NotBlank(message = "品牌名必须提交",groups = {AddGroup.class,UpdateGroup.class})
+			给校验注解标注什么情况需要进行校验
+ 			2）在controller上标注：@Validated({AddGroup.class}),指定校验那一组
+ 			3）默认没有指定分组校验的注解@NotBlank，在分组校验的情况下不生效，只会在@Validated无校验分组情况下生效
+
+ 		5） 自定义校验
+ 			1） 编写自定义的校验注解
+ 			2） 编写自定义的校验器ConstraintValidator,同一个校验注解可以指定多个不同的校验器，适配不同类型的校验
+ 			3） 关联自定义的校验器和自定义的校验注解validatedBy
+
+
+
+ 4 统一的异常处理
+ 	@ControllerAdvice
+ 		1） 编写异常处理类，使用@ControllerAdvice
+ 		2） 使用@ExceptionHandler标明方法可以处理的异常
  */
 
 @EnableDiscoveryClient

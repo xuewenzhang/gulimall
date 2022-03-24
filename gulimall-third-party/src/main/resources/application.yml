@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    name: gulimall-third-partxy
+    #        阿里云oss存储的配置文件
+    alicloud:
+      access-key: LTAI5tCefCv5JipQMquYc41r
+      secret-key: CmnUtRRpzwVNtNLzrfjrTeIlLCjGAU
+      oss:
+        endpoint: oss-cn-beijing.aliyuncs.com
+        bucket: gulimall-zxw
+server:
+  port: 30000
+
+

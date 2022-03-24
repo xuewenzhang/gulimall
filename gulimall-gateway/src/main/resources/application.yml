@@ -31,7 +31,12 @@ spring:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
 
-
+        - id: third_party
+          uri: http://localhost:30000/gulimall-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
 
 
 # 查找所有一级菜单二级菜单的请求
